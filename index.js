@@ -21,10 +21,17 @@ const connection = mysql.createConnection({
       host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+     port: process.env.DB_PORT
 });
 
-
+connection.connect((err) => {
+  if (err) {
+    console.log("DB connection failed:", err);
+  } else {
+    console.log("DB connected successfully");
+  }
+});
 
 //GET/  Fetch and Show Total number of user in our app. Home Page
 
@@ -75,9 +82,9 @@ app.get("/user", (req, res) => {
 
 app.get("/user/:id/edit", (req,res) => {
     let { id } = req.params; 
-    let q = `SELECT * FROM user WHERE id='${id}'`; 
+    let q = `SELECT * FROM user WHERE id=?`; 
 
-    connection.query(q, (err,result) => {
+    connection.query(q, [id], (err,result) => {
         if( err ) {
             console.log(err);
             return res.send("DataBase error"); 
@@ -97,9 +104,9 @@ app.get("/user/:id/edit", (req,res) => {
 app.patch("/user/:id", (req, res) => {
    let { id } = req.params; 
    let {password: formPass, username: newUsername } = req.body;
-   let q = `SELECT * FROM user WHERE id='${id}'`; 
+   let q = `SELECT * FROM user WHERE id=?`;
 
-    connection.query(q, (err,result) => {
+    connection.query(q, [id], (err,result) => {
         if( err ) {
             console.log(err);
             return res.send("DataBase error"); 
@@ -111,8 +118,8 @@ app.patch("/user/:id", (req, res) => {
         }
         else
             {
-                let q2 = `UPDATE user SET username='${newUsername}' WHERE id='${id}'`;
-                connection.query( q2, (err,result) => {
+                let q2 = `UPDATE user SET username=? WHERE id=?`;
+                connection.query( q2, [newUsername, id], (err,result) => {
                      if( err ) {
                                 console.log(err);
                                 return res.send("DataBase error"); 
@@ -123,27 +130,12 @@ app.patch("/user/:id", (req, res) => {
     });
 });
 
-//Delete User Info 
-
-// app.get("/user/:id/delete", (req,res) => {
-//     let {id} = req.params;
-//     let q = `DELETE FROM user WHERE id='${id}';`;
-//     connection.query(q, (err,result) => {
-//             if(err)
-//             {
-//                 console.log(err);
-//                 return res.send("DataBase error");
-//             }
-//             console.log(result);
-//             return res.redirect("/user");
-//     });
-// }); 
 
 app.get("/user/:id/delete/check", (req,res) => {
     let { id } = req.params; 
-    let q = `SELECT * FROM user WHERE id='${id}'`; 
+    let q = `SELECT * FROM user WHERE id=?`;
 
-    connection.query(q, (err,result) => {
+    connection.query(q,[id], (err,result) => {
         if( err ) {
             console.log(err);
             return res.send("DataBase error"); 
@@ -167,7 +159,7 @@ app.post("/user/:id/delete", (req,res) => {
         } 
 
         const user = result[0]; 
-        if (user.email !== email && user.password !== password) {
+        if (user.email !== email || user.password !== password){
             return res.send("Invalid email or password");
         }
 
@@ -209,35 +201,5 @@ app.post("/user/login", (req,res) => {
     });
 });
 
-
-// let getRandomser = () => { 
-//   return [
-//     faker.string.uuid(),
-//     faker.internet.username(),
-//     faker.internet.email(),
-//     faker.internet.password(),
-//   ];
-// } 
-
-
-// //Inserting data
-// let q = "INSERT INTO user (id, username, email, password) VALUES ?";
-// let data = [];
-// for(let i = 1; i<=100; i++)
-// {
-//      data.push(getRandomser()); // ISERT 100 data 
-// }
-
-
-// try {
-//       connection.query(q, [data], (err, result) => {
-//         if(err) throw err;
-//         console.log(result)
-//     });
-// } catch(err) {
-//       console.log(err);
-// } 
-
-// connection.end();
 
 
