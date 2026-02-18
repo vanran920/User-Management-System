@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New User Info</title>
+    <link rel="stylesheet" href="/css/joinUserStyle.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <h1>Welcome to be our new Member!</h1>
+
+    <form class="form-card" method="POST" action="/user/login">
+
+        <label>Username</label>
+        <input type="text" name="username" required autocomplete="username">
+
+        <label>Email</label>
+        <input type="email" name="email" required autocomplete="email">
+
+        <label>Password</label>
+        <input type="password" name="password" required autocomplete="new-password">
+
+        <button type="submit">Join</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

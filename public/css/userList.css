@@ -1,0 +1,151 @@
+/* 
+   RESET
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 
+   PAGE
+ */
+body {
+    background: #f5f7fb;
+    padding: 40px;
+    color: #333;
+}
+
+/* 
+   HEADING
+ */
+h1 {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+/* 
+   CONTAINER
+ */
+.table-container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+
+    overflow-x: auto;
+}
+
+/* 
+   ADD USER BUTTON
+ */
+.add-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+
+    padding: 10px 16px;
+    border-radius: 8px;
+
+    background: #3b82f6;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* 
+   TABLE
+ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+thead {
+    background: #1e293b;
+    color: white;
+}
+
+th {
+    padding: 14px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* CELLS */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+/* ZEBRA STRIPES */
+tbody tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+/* HOVER EFFECT */
+tbody tr:hover {
+    background: #eef2ff;
+}
+
+/* 
+   BUTTONS
+ */
+button {
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+/* EDIT */
+.edit-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #2563eb;
+}
+
+/* DELETE */
+.delete-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+/* 
+   RESPONSIVE
+ */
+@media (max-width: 700px) {
+    body {
+        padding: 15px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .add-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

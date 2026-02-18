@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User</title>
+    <link rel="stylesheet" href="/css/deleteUser.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <h1 class="danger-title">Delete Account</h1>
+
+    <p class="warning">
+        You are about to permanently delete:
+        <strong><%= user.email %></strong>
+    </p>
+
+    <form class="form-card" method="POST" action="/user/<%= user.id %>/delete" autocomplete="off" >
+
+        <label>Email</label>
+        <input type="email" name="email" autocomplete="off" required>
+
+        <label>Password</label>
+        <input type="password" name="password" autocomplete="new-password" required>
+
+        <button type="submit" class="delete-btn">
+            Confirm Delete
+        </button> 
+        <button type="button" onclick="history.back()" class="cancel-btn">Cancel</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

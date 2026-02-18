@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All User</title>
+    <link rel="stylesheet" href="/css/userList.css">
+    <style>
+        table, tr, th,  td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1> 
+    <div class="table-container">
+     <a href="/user/join" class="add-btn">+ Add User</a>   
+   <table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% for (user of users) { %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td>
+                <form method="GET" action="/user/<%= user.id %>/edit">
+                    <button class="edit-btn">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="GET" action="/user/<%= user.id %>/delete/check">
+                    <button class="delete-btn">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+    </div>
+</body>
+</html>
